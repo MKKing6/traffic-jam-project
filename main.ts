@@ -14,6 +14,9 @@ controller.right.onEvent(ControllerButtonEvent.Released, function () {
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.setVelocity(20, 0)
+    if (true) {
+    	
+    }
 })
 controller.A.onEvent(ControllerButtonEvent.Released, function () {
     mySprite.setVelocity(0, 0)
