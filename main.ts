@@ -1,3 +1,8 @@
+scene.onHitWall(SpriteKind.Player, function (sprite, location) {
+    if (mySprite.tileKindAt(TileDirection.Right, myTiles.tile1)) {
+        game.over(true)
+    }
+})
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.setImage(img`
         . . . . . . . . . . . . . . . . 
