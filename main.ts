@@ -1,40 +1,49 @@
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    direction1 = "U"
+    mySprite1.setImage(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . 2 2 . . . . . . . 
+        . . . . . . 2 2 2 2 . . . . . . 
+        . . . . f 2 2 2 2 2 2 f . . . . 
+        . . . . f 2 2 2 2 2 2 f . . . . 
+        . . . . f 2 2 2 2 2 2 f . . . . 
+        . . . . . 2 2 2 2 2 2 . . . . . 
+        . . . . . 2 2 2 2 2 2 . . . . . 
+        . . . . . 2 2 2 2 2 2 . . . . . 
+        . . . . f 2 2 2 2 2 2 f . . . . 
+        . . . . f 2 2 2 2 2 2 f . . . . 
+        . . . . f 2 2 2 2 2 2 f . . . . 
+        . . . . . 2 2 2 2 2 2 . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `)
+    mySprite1.setVelocity(0, -40)
+})
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
-    if (mySprite.tileKindAt(TileDirection.Right, myTiles.tile1)) {
+    if (mySprite1.tileKindAt(TileDirection.Right, myTiles.tile1)) {
         game.over(true)
     }
 })
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.setImage(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . 2 2 . . . . . . . 
-        . . . . . . 2 2 2 2 . . . . . . 
-        . . . . f 2 2 2 2 2 2 f . . . . 
-        . . . . f 2 2 2 2 2 2 f . . . . 
-        . . . . f 2 2 2 2 2 2 f . . . . 
-        . . . . . 2 2 2 2 2 2 . . . . . 
-        . . . . . 2 2 2 2 2 2 . . . . . 
-        . . . . . 2 2 2 2 2 2 . . . . . 
-        . . . . f 2 2 2 2 2 2 f . . . . 
-        . . . . f 2 2 2 2 2 2 f . . . . 
-        . . . . f 2 2 2 2 2 2 f . . . . 
-        . . . . . 2 2 2 2 2 2 . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `)
-    mySprite.setVelocity(0, -40)
-})
 controller.up.onEvent(ControllerButtonEvent.Repeated, function () {
-    mySprite.setVelocity(0, -40)
+    if (direction1 == "U") {
+        mySprite1.setVelocity(0, -40)
+    }
 })
 controller.down.onEvent(ControllerButtonEvent.Released, function () {
-    mySprite.setVelocity(0, 0)
+    if (direction1 == "D") {
+        direction1 = "N"
+        mySprite1.setVelocity(0, 0)
+    }
 })
 controller.right.onEvent(ControllerButtonEvent.Repeated, function () {
-    mySprite.setVelocity(40, 0)
+    if (direction1 == "R") {
+        mySprite1.setVelocity(40, 0)
+    }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.setImage(img`
+    direction1 = "L"
+    mySprite1.setImage(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -52,16 +61,23 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `)
-    mySprite.setVelocity(-40, 0)
+    mySprite1.setVelocity(-40, 0)
 })
 controller.right.onEvent(ControllerButtonEvent.Released, function () {
-    mySprite.setVelocity(0, 0)
+    if (direction1 == "R") {
+        direction1 = "N"
+        mySprite1.setVelocity(0, 0)
+    }
 })
 controller.left.onEvent(ControllerButtonEvent.Released, function () {
-    mySprite.setVelocity(0, 0)
+    if (direction1 == "L") {
+        direction1 = "N"
+        mySprite1.setVelocity(0, 0)
+    }
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.setImage(img`
+    direction1 = "R"
+    mySprite1.setImage(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -79,16 +95,22 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `)
-    mySprite.setVelocity(40, 0)
+    mySprite1.setVelocity(40, 0)
 })
 controller.up.onEvent(ControllerButtonEvent.Released, function () {
-    mySprite.setVelocity(0, 0)
+    if (direction1 == "U") {
+        direction1 = "N"
+        mySprite1.setVelocity(0, 0)
+    }
 })
 controller.down.onEvent(ControllerButtonEvent.Repeated, function () {
-    mySprite.setVelocity(0, 40)
+    if (direction1 == "D") {
+        mySprite1.setVelocity(0, 40)
+    }
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.setImage(img`
+    direction1 = "D"
+    mySprite1.setImage(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . 2 2 2 2 2 2 . . . . . 
@@ -106,15 +128,17 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `)
-    mySprite.setVelocity(0, 40)
+    mySprite1.setVelocity(0, 40)
 })
 controller.left.onEvent(ControllerButtonEvent.Repeated, function () {
-    mySprite.setVelocity(-40, 0)
+    if (direction1 == "L") {
+        mySprite1.setVelocity(-40, 0)
+    }
 })
-let mySprite: Sprite = null
-let mysprite2 = 0
+let direction1 = ""
+let mySprite1: Sprite = null
 tiles.setTilemap(tilemap`level_0`)
-mySprite = sprites.create(img`
+mySprite1 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -132,7 +156,9 @@ mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-mySprite.setPosition(10, 25)
+mySprite1.setPosition(10, 25)
+direction1 = "N"
+let direction2 = "N"
 forever(function () {
-    scene.cameraFollowSprite(mySprite)
+    scene.cameraFollowSprite(mySprite1)
 })
