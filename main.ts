@@ -137,6 +137,10 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         `)
     mySprite1.setVelocity(0, 40)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    pause(1000)
+})
 info.onLifeZero(function () {
     game.over(false, effects.dissolve)
 })
@@ -188,8 +192,53 @@ let mySprite2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 mySprite2.setPosition(129, 9)
-info.startCountdown(45)
+info.startCountdown(30)
 info.setLife(3)
+forever(function () {
+    mySprite2.setImage(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . 8 8 8 8 8 8 . . . . . 
+        . . . . f 8 8 8 8 8 8 f . . . . 
+        . . . . f 8 8 8 8 8 8 f . . . . 
+        . . . . f 8 8 8 8 8 8 f . . . . 
+        . . . . . 8 8 8 8 8 8 . . . . . 
+        . . . . . 8 8 8 8 8 8 . . . . . 
+        . . . . . 8 8 8 8 8 8 . . . . . 
+        . . . . f 8 8 8 8 8 8 f . . . . 
+        . . . . f 8 8 8 8 8 8 f . . . . 
+        . . . . f 8 8 8 8 8 8 f . . . . 
+        . . . . . . 8 8 8 8 . . . . . . 
+        . . . . . . . 8 8 . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `)
+    mySprite2.setVelocity(0, 50)
+    pause(1000)
+    mySprite2.setImage(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . 8 8 . . . . . . . 
+        . . . . . . 8 8 8 8 . . . . . . 
+        . . . . f 8 8 8 8 8 8 f . . . . 
+        . . . . f 8 8 8 8 8 8 f . . . . 
+        . . . . f 8 8 8 8 8 8 f . . . . 
+        . . . . . 8 8 8 8 8 8 . . . . . 
+        . . . . . 8 8 8 8 8 8 . . . . . 
+        . . . . . 8 8 8 8 8 8 . . . . . 
+        . . . . f 8 8 8 8 8 8 f . . . . 
+        . . . . f 8 8 8 8 8 8 f . . . . 
+        . . . . f 8 8 8 8 8 8 f . . . . 
+        . . . . . 8 8 8 8 8 8 . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `)
+    mySprite2.setVelocity(0, -50)
+    pause(1000)
+    if (true) {
+    	
+    }
+})
 forever(function () {
     scene.cameraFollowSprite(mySprite1)
 })
