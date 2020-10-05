@@ -10,7 +10,8 @@
         "README.md",
         "tilemap.g.jres",
         "tilemap.g.ts",
-        "main.py"
+        "main.py",
+        null
     ],
     "testFiles": [
         "test.ts"
