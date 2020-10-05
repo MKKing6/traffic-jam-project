@@ -1,3 +1,7 @@
+scene.onOverlapTile(SpriteKind.Player, myTiles.tile3, function (sprite, location) {
+    info.changeLifeBy(-1)
+    pause(1000)
+})
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     direction1 = "U"
     mySprite1.setImage(img`
@@ -75,6 +79,9 @@ controller.left.onEvent(ControllerButtonEvent.Released, function () {
         mySprite1.setVelocity(0, 0)
     }
 })
+info.onCountdownEnd(function () {
+    game.over(false, effects.dissolve)
+})
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     direction1 = "R"
     mySprite1.setImage(img`
@@ -130,6 +137,9 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         `)
     mySprite1.setVelocity(0, 40)
 })
+info.onLifeZero(function () {
+    game.over(false, effects.dissolve)
+})
 controller.left.onEvent(ControllerButtonEvent.Repeated, function () {
     if (direction1 == "L") {
         mySprite1.setVelocity(-40, 0)
@@ -178,6 +188,8 @@ let mySprite2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 mySprite2.setPosition(129, 9)
+info.startCountdown(45)
+info.setLife(3)
 forever(function () {
     scene.cameraFollowSprite(mySprite1)
 })
