@@ -159,6 +159,25 @@ mySprite1 = sprites.create(img`
 mySprite1.setPosition(10, 25)
 direction1 = "N"
 let direction2 = "N"
+let mySprite2 = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . 8 8 8 8 8 8 . . . . . 
+    . . . . f 8 8 8 8 8 8 f . . . . 
+    . . . . f 8 8 8 8 8 8 f . . . . 
+    . . . . f 8 8 8 8 8 8 f . . . . 
+    . . . . . 8 8 8 8 8 8 . . . . . 
+    . . . . . 8 8 8 8 8 8 . . . . . 
+    . . . . . 8 8 8 8 8 8 . . . . . 
+    . . . . f 8 8 8 8 8 8 f . . . . 
+    . . . . f 8 8 8 8 8 8 f . . . . 
+    . . . . f 8 8 8 8 8 8 f . . . . 
+    . . . . . . 8 8 8 8 . . . . . . 
+    . . . . . . . 8 8 . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Player)
+mySprite2.setPosition(129, 9)
 forever(function () {
     scene.cameraFollowSprite(mySprite1)
 })
