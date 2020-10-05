@@ -1,6 +1,6 @@
 scene.onOverlapTile(SpriteKind.Player, myTiles.tile3, function (sprite, location) {
     info.changeLifeBy(-1)
-    pause(1000)
+    pause(500)
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     direction1 = "U"
@@ -23,11 +23,6 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `)
     mySprite1.setVelocity(0, -40)
-})
-scene.onHitWall(SpriteKind.Player, function (sprite, location) {
-    if (mySprite1.tileKindAt(TileDirection.Right, myTiles.tile1)) {
-        game.over(true)
-    }
 })
 controller.up.onEvent(ControllerButtonEvent.Repeated, function () {
     if (direction1 == "U") {
@@ -144,6 +139,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherS
 info.onLifeZero(function () {
     game.over(false, effects.dissolve)
 })
+scene.onOverlapTile(SpriteKind.Player, myTiles.tile1, function (sprite, location) {
+    Level += 1
+    music.powerUp.play()
+})
 controller.left.onEvent(ControllerButtonEvent.Repeated, function () {
     if (direction1 == "L") {
         mySprite1.setVelocity(-40, 0)
@@ -171,74 +170,11 @@ mySprite1 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 mySprite1.setPosition(10, 25)
+let Level = 1
 direction1 = "N"
 let direction2 = "N"
-let mySprite2 = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . 8 8 8 8 8 8 . . . . . 
-    . . . . f 8 8 8 8 8 8 f . . . . 
-    . . . . f 8 8 8 8 8 8 f . . . . 
-    . . . . f 8 8 8 8 8 8 f . . . . 
-    . . . . . 8 8 8 8 8 8 . . . . . 
-    . . . . . 8 8 8 8 8 8 . . . . . 
-    . . . . . 8 8 8 8 8 8 . . . . . 
-    . . . . f 8 8 8 8 8 8 f . . . . 
-    . . . . f 8 8 8 8 8 8 f . . . . 
-    . . . . f 8 8 8 8 8 8 f . . . . 
-    . . . . . . 8 8 8 8 . . . . . . 
-    . . . . . . . 8 8 . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player)
-mySprite2.setPosition(129, 9)
 info.startCountdown(30)
 info.setLife(3)
-forever(function () {
-    mySprite2.setImage(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . 8 8 8 8 8 8 . . . . . 
-        . . . . f 8 8 8 8 8 8 f . . . . 
-        . . . . f 8 8 8 8 8 8 f . . . . 
-        . . . . f 8 8 8 8 8 8 f . . . . 
-        . . . . . 8 8 8 8 8 8 . . . . . 
-        . . . . . 8 8 8 8 8 8 . . . . . 
-        . . . . . 8 8 8 8 8 8 . . . . . 
-        . . . . f 8 8 8 8 8 8 f . . . . 
-        . . . . f 8 8 8 8 8 8 f . . . . 
-        . . . . f 8 8 8 8 8 8 f . . . . 
-        . . . . . . 8 8 8 8 . . . . . . 
-        . . . . . . . 8 8 . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `)
-    mySprite2.setVelocity(0, 50)
-    pause(1000)
-    mySprite2.setImage(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . 8 8 . . . . . . . 
-        . . . . . . 8 8 8 8 . . . . . . 
-        . . . . f 8 8 8 8 8 8 f . . . . 
-        . . . . f 8 8 8 8 8 8 f . . . . 
-        . . . . f 8 8 8 8 8 8 f . . . . 
-        . . . . . 8 8 8 8 8 8 . . . . . 
-        . . . . . 8 8 8 8 8 8 . . . . . 
-        . . . . . 8 8 8 8 8 8 . . . . . 
-        . . . . f 8 8 8 8 8 8 f . . . . 
-        . . . . f 8 8 8 8 8 8 f . . . . 
-        . . . . f 8 8 8 8 8 8 f . . . . 
-        . . . . . 8 8 8 8 8 8 . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `)
-    mySprite2.setVelocity(0, -50)
-    pause(1000)
-    if (true) {
-    	
-    }
-})
 forever(function () {
     scene.cameraFollowSprite(mySprite1)
 })
