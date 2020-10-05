@@ -1,6 +1,11 @@
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.setVelocity(0, -20)
 })
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (mysprite2 == 0) {
+        mySprite.setVelocity(0, 20)
+    }
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (mysprite2 == 0) {
         mySprite.setVelocity(20, 0)
@@ -12,11 +17,11 @@ controller.down.onEvent(ControllerButtonEvent.Released, function () {
 controller.right.onEvent(ControllerButtonEvent.Released, function () {
     mySprite.setVelocity(0, 0)
 })
+info.onCountdownEnd(function () {
+    game.over(false, effects.dissolve)
+})
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.setVelocity(20, 0)
-    if (true) {
-    	
-    }
 })
 controller.A.onEvent(ControllerButtonEvent.Released, function () {
     mySprite.setVelocity(0, 0)
@@ -26,6 +31,12 @@ controller.up.onEvent(ControllerButtonEvent.Released, function () {
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.setVelocity(0, 20)
+})
+info.onLifeZero(function () {
+    game.over(false, effects.dissolve)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
 })
 let mysprite2 = 0
 let mySprite: Sprite = null
@@ -52,13 +63,13 @@ mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . f f f . . f f f . . . . . 
-    . . 2 2 2 2 2 2 2 2 2 2 . . . . 
-    . . 2 2 2 2 2 2 2 2 2 2 2 . . . 
-    . . 2 2 2 2 2 2 2 2 2 2 2 2 . . 
-    . . 2 2 2 2 2 2 2 2 2 2 2 2 . . 
-    . . 2 2 2 2 2 2 2 2 2 2 2 2 . . 
-    . . 2 2 2 2 2 2 2 2 2 2 2 . . . 
-    . . 2 2 2 2 2 2 2 2 2 2 . . . . 
+    . . 8 8 8 8 8 8 8 8 8 8 . . . . 
+    . . 8 8 8 8 8 8 8 8 8 8 8 . . . 
+    . . 8 8 8 8 8 8 8 8 8 8 8 8 . . 
+    . . 8 8 8 8 8 8 8 8 8 8 8 8 . . 
+    . . 8 8 8 8 8 8 8 8 8 8 8 8 . . 
+    . . 8 8 8 8 8 8 8 8 8 8 8 . . . 
+    . . 8 8 8 8 8 8 8 8 8 8 . . . . 
     . . . f f f . . . f f . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -67,6 +78,64 @@ mySprite = sprites.create(img`
     `, SpriteKind.Player)
 mysprite2 = 0
 mySprite.setPosition(10, 21)
+let mySprite3 = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . 2 2 2 2 2 2 2 2 2 2 2 2 . . 
+    . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+    . 2 1 1 1 1 1 2 2 1 1 1 1 1 2 . 
+    . 2 1 2 2 2 2 2 2 2 2 1 2 2 2 . 
+    . 2 1 1 1 1 1 2 2 2 2 1 2 2 2 . 
+    . 2 2 2 2 2 1 2 2 2 2 1 2 2 2 . 
+    . 2 1 1 1 1 1 2 2 2 2 1 2 2 2 . 
+    . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+    . 2 2 1 1 1 1 2 2 1 1 1 1 2 2 . 
+    . 2 2 1 2 2 1 2 2 1 2 2 1 2 2 . 
+    . 2 2 1 2 2 1 2 2 1 1 1 1 2 2 . 
+    . 2 2 1 2 2 1 2 2 1 2 2 2 2 2 . 
+    . 2 2 1 2 2 1 2 2 1 2 2 2 2 2 . 
+    . . 2 1 1 1 1 2 2 1 2 2 2 2 . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Enemy)
+mySprite3.setPosition(97, 35)
+let mysprite_4 = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . 2 2 2 2 2 2 2 2 2 2 2 2 . . 
+    . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+    . 2 1 1 1 1 1 2 2 1 1 1 1 1 2 . 
+    . 2 1 2 2 2 2 2 2 2 2 1 2 2 2 . 
+    . 2 1 1 1 1 1 2 2 2 2 1 2 2 2 . 
+    . 2 2 2 2 2 1 2 2 2 2 1 2 2 2 . 
+    . 2 1 1 1 1 1 2 2 2 2 1 2 2 2 . 
+    . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+    . 2 2 1 1 1 1 2 2 1 1 1 1 2 2 . 
+    . 2 2 1 2 2 1 2 2 1 2 2 1 2 2 . 
+    . 2 2 1 2 2 1 2 2 1 1 1 1 2 2 . 
+    . 2 2 1 2 2 1 2 2 1 2 2 2 2 2 . 
+    . 2 2 1 2 2 1 2 2 1 2 2 2 2 2 . 
+    . . 2 1 1 1 1 2 2 1 2 2 2 2 . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Enemy)
+mysprite_4.setPosition(160, 26)
+let mysprite_5 = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . 2 2 2 2 2 2 2 2 2 2 2 2 . . 
+    . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+    . 2 1 1 1 1 1 2 2 1 1 1 1 1 2 . 
+    . 2 1 2 2 2 2 2 2 2 2 1 2 2 2 . 
+    . 2 1 1 1 1 1 2 2 2 2 1 2 2 2 . 
+    . 2 2 2 2 2 1 2 2 2 2 1 2 2 2 . 
+    . 2 1 1 1 1 1 2 2 2 2 1 2 2 2 . 
+    . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+    . 2 2 1 1 1 1 2 2 1 1 1 1 2 2 . 
+    . 2 2 1 2 2 1 2 2 1 2 2 1 2 2 . 
+    . 2 2 1 2 2 1 2 2 1 1 1 1 2 2 . 
+    . 2 2 1 2 2 1 2 2 1 2 2 2 2 2 . 
+    . 2 2 1 2 2 1 2 2 1 2 2 2 2 2 . 
+    . . 2 1 1 1 1 2 2 1 2 2 2 2 . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Enemy)
+mySprite.setPosition(0, 0)
+info.setLife(1)
 forever(function () {
     scene.cameraFollowSprite(mySprite)
 })

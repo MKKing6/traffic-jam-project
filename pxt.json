@@ -2,7 +2,8 @@
     "name": "Traffic Jam Project",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "color": "*"
     },
     "files": [
         "main.blocks",
@@ -21,5 +22,5 @@
     "supportedTargets": [
         "arcade"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "blocksprj"
 }
